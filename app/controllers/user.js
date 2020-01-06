@@ -10,15 +10,15 @@ module.exports = function(app) {
  
         userRepository.save(user,function(error, result) {
  
-            let resultClient = new Object()
+            let resultData = new Object()
  
             if(error) 
                 throw error
             
-            resultClient.code = 1
-            resultClient.message = "Record saved successfully!"
+            resultData.code = 1
+            resultData.message = "Record saved successfully!"
             
-            res.send(resultClient)
+            res.send(resultData)
         })
     })
 
@@ -29,15 +29,15 @@ module.exports = function(app) {
   
         userRepository.updateOneById(user, id, function(error, result) {
  
-            let resultClient = new Object();
+            let resultData = new Object();
  
             if(error) 
                 throw error
             
-            resultClient.code = 1
-            resultClient.message = "Record updated successfully!"
+            resultData.code = 1
+            resultData.message = "Record updated successfully!"
  
-            res.send(resultClient)
+            res.send(resultData)
         })
     })
 
