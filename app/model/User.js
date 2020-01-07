@@ -1,5 +1,6 @@
 const mongoose = require('mongoose'); 
 const Schema = mongoose.Schema;
+const uniqueValidator = require('mongoose-unique-validator')
 
 const userSchema = new Schema({  
     name: { 
@@ -57,7 +58,14 @@ const userSchema = new Schema({
     }
 
    }, {collection: 'users'});  
-   
+
+      
 const User = mongoose.model('User', userSchema);
 
 module.exports = User;
+
+User.schema.path('email').validate(function (value, respond) {                                                                                           
+    User.findOne({ email: value }, function (err, user) {                                                                                                
+        if(user) respond(false);                                                                                                                         
+    });                                                                                                                                                  
+}, 'This email address is already registered');
