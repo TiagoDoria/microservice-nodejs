@@ -33,6 +33,13 @@ MongoClient.connect(url, { useUnifiedTopology: true },function(error, client) {
         }    
     }
 
+    repository.prototype.login = function(email, callback) {
+        client.db(database).collection("users").find(email).toArray(function(error, result) {
+            callback(error, result)
+        })
+        
+    }
+
     repository.prototype.findById = function(id, callback) {
         let idRegister = {"_id": ObjectId(id)};
         client.db(database).collection("users").find(idRegister).toArray(function(error, result) {

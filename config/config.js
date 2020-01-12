@@ -9,8 +9,7 @@ var app = express();
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
  
- consign().include("./config/connection.js")
-         .then("app/repository")
+ consign().include("app/repository")
          .then("app/controllers")
          .into(app);
  
